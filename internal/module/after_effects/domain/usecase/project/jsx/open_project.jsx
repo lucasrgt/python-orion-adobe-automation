@@ -1,9 +1,13 @@
 var file = new File(
-    'C:/Users/Lucas/Pictures/ae automation/extendscript/src/scripts/test_project.aep'
+    '%PROJECT_PATH%'
 );
+
+alert(file);
 
 if (file.exists) {
     app.open(file);
+    alert(file.fsName);
+    alert('Abriu');
 } else {
     alert('File does not exist: ' + file.fsName);
 }

@@ -1,9 +1,9 @@
 if (comp === null) {
-    alert('No composition found with the name ' + compName);
+    alert('No comp found with the name ' + compName);
 }
 
 if (comp === null) {
-    alert('No composition has been setup.');
+    alert('No comp has been setup.');
 } else {
     var layerName = 'Testes';
 

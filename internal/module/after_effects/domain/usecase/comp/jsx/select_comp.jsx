@@ -6,10 +6,11 @@ for (var i = 1; i <= app.project.numItems; i++) {
         app.project.item(i) instanceof CompItem
     ) {
         comp = app.project.item(i);
+        alert(compName);
         break;
     }
 }
 
 if (comp === null) {
-    alert('No composition found with the name ' + compName);
+    alert('No comp found with the name ' + compName);
 }
