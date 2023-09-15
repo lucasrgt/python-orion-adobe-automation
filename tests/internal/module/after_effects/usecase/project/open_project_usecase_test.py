@@ -2,6 +2,7 @@ import os
 import subprocess
 import unittest
 
+from internal.core.config import project_config
 from internal.module.after_effects.domain.usecase.project.open_project_usecase import OpenProjectUseCase
 from internal.module.shared.entity.jsx_entity import JsxEntity
 from internal.module.shared.usecase.inject_values_into_jsx_usecase import InjectValuesIntoJsxUseCase
@@ -16,7 +17,7 @@ class TestOpenProjectUseCase(unittest.TestCase):
 
         self.project_path = os.path.join(self.current_file_path, 'resources/test_project.aep')
 
-        self.after_effects_path = r'C:\Program Files\Adobe\Adobe After Effects 2023\Support Files\AfterFX.exe'
+        self.after_effects_path = project_config.after_effects_path
 
         # Dependencies Setup
         read_jsx_file_usecase = ReadJsxFileUseCase()
@@ -36,7 +37,6 @@ class TestOpenProjectUseCase(unittest.TestCase):
         self.assertEqual(result, True)
 
     def test_open_project_failure(self):
-
         # arrange
         invalid_project_path = "invalid/path"
         error_img_path = os.path.join(self.current_file_path, 'resources/img_cv/file_does_not_exist.png')
