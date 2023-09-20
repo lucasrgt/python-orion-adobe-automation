@@ -1,7 +1,6 @@
 from typing import List
 
 from internal.module.shared.entity.jsx_entity import JsxEntity
-from internal.module.shared.usecase.read_jsx_file_usecase import ReadJsxFileUseCase
 
 
 class BundleJsxScriptsUseCase:

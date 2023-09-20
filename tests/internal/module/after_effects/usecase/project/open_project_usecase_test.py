@@ -6,7 +6,6 @@ from internal.core.config import project_config
 from internal.module.after_effects.domain.usecase.project.open_project_usecase import OpenProjectUseCase
 from internal.module.shared.entity.jsx_entity import JsxEntity
 from internal.module.shared.usecase.inject_values_into_jsx_usecase import InjectValuesIntoJsxUseCase
-from internal.module.shared.usecase.read_jsx_file_usecase import ReadJsxFileUseCase
 from tests.helper.jsx_test_helper import JsxTestHelper
 
 

@@ -1,25 +1,21 @@
 import os
 
 from internal.module.shared.entity.jsx_entity import JsxEntity
-from internal.module.shared.usecase.bundle_jsx_scripts_usecase import BundleJsxScriptsUseCase
 from internal.module.shared.usecase.inject_values_into_jsx_usecase import InjectValuesIntoJsxUseCase
-from internal.module.shared.usecase.read_jsx_file_usecase import ReadJsxFileUseCase
 
 
 class SelectCompUseCase:
     def __init__(self,
-                 read_jsx_file_usecase: ReadJsxFileUseCase,
                  inject_values_into_jsx_usecase: InjectValuesIntoJsxUseCase):
         self.current_file_path = os.path.abspath(os.path.dirname(__file__))
-        self.read_jsx_file_usecase = read_jsx_file_usecase
         self.inject_values_into_jsx_usecase = inject_values_into_jsx_usecase
 
     def execute(self, jsx_entity: JsxEntity, comp_name: str):
-        jsx_entity.file_path = os.path.join(self.current_file_path, "jsx/select_comp.jsx")
+        # Read the JSX file
+        jsx_entity.file_path = os.path.join(self.current_file_path, 'jsx/select_comp.jsx')
 
-        # Read the script file
-        ok = self.read_jsx_file_usecase.execute(jsx_entity)
-        if ok is False:
+        ok = jsx_entity.script_file = jsx_entity.read_jsx_file()
+        if ok is None:
             return False
 
         # Inject comp name into Select Comp Script

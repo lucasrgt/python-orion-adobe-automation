@@ -9,7 +9,6 @@ from internal.module.after_effects.domain.usecase.project.open_project_usecase i
 from internal.module.shared.entity.jsx_entity import JsxEntity
 from internal.module.shared.usecase.bundle_jsx_scripts_usecase import BundleJsxScriptsUseCase
 from internal.module.shared.usecase.inject_values_into_jsx_usecase import InjectValuesIntoJsxUseCase
-from internal.module.shared.usecase.read_jsx_file_usecase import ReadJsxFileUseCase
 
 current_file_path = os.path.abspath(os.path.dirname(__file__))
 src_dir_path = os.path.join(current_file_path, "..", "..", "..", "src")
@@ -31,19 +30,17 @@ class TestSelectCompUseCase(unittest.TestCase):
         self.after_effects_path = project_config.after_effects_path
 
         # Dependencies Setup
-        read_jsx_file_usecase = ReadJsxFileUseCase()
-        inject_values_into_jsx_usecase = InjectValuesIntoJsxUseCase()
-
-        self.bundle_jsx_scripts_usecase = BundleJsxScriptsUseCase(read_jsx_file_usecase)
-
-        self.open_project_usecase = OpenProjectUseCase(read_jsx_file_usecase, inject_values_into_jsx_usecase)
-
-        self.usecase = SelectCompUseCase(read_jsx_file_usecase, inject_values_into_jsx_usecase)
-
         self.main_jsx_entity = MockJsxEntity()
-
         self.open_project_jsx_entity = MockJsxEntity()
         self.select_comp_jsx_entity = MockJsxEntity()
+
+        inject_values_into_jsx_usecase = InjectValuesIntoJsxUseCase()
+
+        self.bundle_jsx_scripts_usecase = BundleJsxScriptsUseCase()
+
+        self.open_project_usecase = OpenProjectUseCase(inject_values_into_jsx_usecase)
+
+        self.usecase = SelectCompUseCase(inject_values_into_jsx_usecase)
 
     def test_select_comp_success(self):
         # arrange
@@ -56,13 +53,9 @@ class TestSelectCompUseCase(unittest.TestCase):
 
         result = self.usecase.execute(self.select_comp_jsx_entity, comp_name)
 
-        print(self.select_comp_jsx_entity.script_file)
-
         # bundle it to single execution
         self.bundle_jsx_scripts_usecase.execute(self.main_jsx_entity,
                                                 [self.open_project_jsx_entity, self.select_comp_jsx_entity])
-
-        print(self.main_jsx_entity.script_file)
 
         subprocess.run([self.after_effects_path, '-s', self.main_jsx_entity.script_file])
 
