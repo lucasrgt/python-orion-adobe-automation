@@ -3,7 +3,6 @@ import sys
 import os
 
 from internal.module.shared.entity.jsx_entity import JsxEntity
-from internal.module.shared.usecase.read_jsx_file_usecase import ReadJsxFileUseCase
 
 current_file_path = os.path.abspath(os.path.dirname(__file__))
 src_dir_path = os.path.join(current_file_path, "..", "..", "..", "src")
@@ -15,34 +14,33 @@ class MockJsxEntity(JsxEntity):
     pass
 
 
-class TestReadJsxFileUseCase(unittest.TestCase):
+class TestJsxEntity(unittest.TestCase):
     def setUp(self):
         self.current_file_path = os.path.abspath(os.path.dirname(__file__))
 
         self.jsx_entity = MockJsxEntity(
-            os.path.join(self.current_file_path, "resource/jsx/replace_test.jsx")
+            os.path.join(self.current_file_path, "../entity/resource/jsx/test_read.jsx")
         )
-
-        self.usecase = ReadJsxFileUseCase()
 
     def test_read_success(self):
         # arrange
+        expected = "alert('script');"
 
         # act
-        result = self.usecase.execute(self.jsx_entity)
+        result = self.jsx_entity.read_jsx_file()
 
         # assert
-        self.assertEqual(result, True)
+        self.assertEqual(result, expected)
 
     def test_read_failure(self):
         # arrange
-        jsx_entity_invalid_path = MockJsxEntity("./invalid_path/replace_test.jsx")
+        jsx_entity_with_invalid_path = MockJsxEntity("./invalid_path/test_read.jsx")
 
         # act
-        result = self.usecase.execute(jsx_entity_invalid_path)
+        result = jsx_entity_with_invalid_path.read_jsx_file()
 
         # assert
-        self.assertEqual(result, False)
+        self.assertEqual(result, None)
 
 
 if __name__ == "__main__":

@@ -4,7 +4,6 @@ import os
 
 from internal.module.shared.entity.jsx_entity import JsxEntity
 from internal.module.shared.usecase.inject_values_into_jsx_usecase import InjectValuesIntoJsxUseCase
-from internal.module.shared.usecase.read_jsx_file_usecase import ReadJsxFileUseCase
 
 current_file_path = os.path.abspath(os.path.dirname(__file__))
 src_dir_path = os.path.join(current_file_path, "..", "..", "..", "src")
@@ -24,7 +23,6 @@ class TestInjectValuesIntoJsxUseCase(unittest.TestCase):
             os.path.join(self.current_file_path, "resource/jsx/replace_test.jsx")
         )
 
-        self.read_usecase = ReadJsxFileUseCase()
         self.inject_usecase = InjectValuesIntoJsxUseCase()
 
     def test_inject_success(self):
@@ -35,8 +33,6 @@ class TestInjectValuesIntoJsxUseCase(unittest.TestCase):
         ]
 
         # act
-        self.read_usecase.execute(self.jsx_entity)
-
         result = self.inject_usecase.execute(self.jsx_entity, replacements)
 
         # assert
@@ -53,7 +49,6 @@ class TestInjectValuesIntoJsxUseCase(unittest.TestCase):
         ]
 
         # act
-        self.read_usecase.execute(self.jsx_entity)
         result = self.inject_usecase.execute(self.jsx_entity, invalid_replacements)
 
         # assert

@@ -24,9 +24,8 @@ class TestOpenProjectUseCase(unittest.TestCase):
         self.after_effects_path = project_config.after_effects_path
 
         # Dependencies Setup
-        read_jsx_file_usecase = ReadJsxFileUseCase()
         inject_jsx_file_usecase = InjectValuesIntoJsxUseCase()
-        self.usecase = OpenProjectUseCase(read_jsx_file_usecase, inject_jsx_file_usecase)
+        self.usecase = OpenProjectUseCase(inject_jsx_file_usecase)
 
         self.jsx_entity = MockJsxEntity()
 
