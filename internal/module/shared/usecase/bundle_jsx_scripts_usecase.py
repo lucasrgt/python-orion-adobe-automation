@@ -5,8 +5,8 @@ from internal.module.shared.usecase.read_jsx_file_usecase import ReadJsxFileUseC
 
 
 class BundleJsxScriptsUseCase:
-    def __init__(self, read_jsx_file_usecase: ReadJsxFileUseCase):
-        self.read_jsx_file_usecase = read_jsx_file_usecase
+    def __init__(self):
+        pass
 
     def execute(self, main_jsx_entity: JsxEntity, jsx_entities_to_bundle: List[JsxEntity]) -> bool:
         """Bundle all the jsx files together into one big script,
@@ -19,7 +19,6 @@ class BundleJsxScriptsUseCase:
             bundled_script = ""
 
             for jsx_entity in jsx_entities_to_bundle:
-                self.read_jsx_file_usecase.execute(jsx_entity)
                 bundled_script += jsx_entity.script_file
 
             main_jsx_entity.script_file = bundled_script

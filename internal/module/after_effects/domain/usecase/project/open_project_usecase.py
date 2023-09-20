@@ -14,7 +14,7 @@ class OpenProjectUseCase:
         self.read_jsx_file_usecase = read_jsx_file_usecase
         self.inject_values_into_jsx_usecase = inject_values_into_jsx_usecase
 
-    def execute(self, project_path: str, jsx_entity: JsxEntity) -> bool:
+    def execute(self, jsx_entity: JsxEntity, project_path: str, ) -> bool:
 
         # Read the script file
         jsx_entity.file_path = os.path.join(self.current_file_path, 'jsx/open_project.jsx')

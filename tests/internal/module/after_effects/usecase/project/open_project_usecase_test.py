@@ -10,6 +10,10 @@ from internal.module.shared.usecase.read_jsx_file_usecase import ReadJsxFileUseC
 from tests.helper.jsx_test_helper import JsxTestHelper
 
 
+class MockJsxEntity(JsxEntity):
+    pass
+
+
 class TestOpenProjectUseCase(unittest.TestCase):
     def setUp(self):
         # Path Configuration
@@ -24,7 +28,7 @@ class TestOpenProjectUseCase(unittest.TestCase):
         inject_jsx_file_usecase = InjectValuesIntoJsxUseCase()
         self.usecase = OpenProjectUseCase(read_jsx_file_usecase, inject_jsx_file_usecase)
 
-        self.jsx_entity = JsxEntity()
+        self.jsx_entity = MockJsxEntity()
 
     def test_open_project_success(self):
         # arrange

@@ -1,11 +1,7 @@
 if (comp === null) {
-    alert('No comp found with the name ' + compName);
-}
-
-if (comp === null) {
     alert('No comp has been setup.');
 } else {
-    var layerName = 'Testes';
+    var layerName = '%LAYER_NAME%';
 
     var layer = comp.layer(layerName);
 
@@ -15,10 +11,10 @@ if (comp === null) {
 
     if (layer !== null && layer.effect('Change to Color') != null) {
         try {
-            changeColor(1, [0, 0, 0]);
-            changeColor(2, [0, 255, 0]);
+            changeColor(1, '%FROM_RGB_COLOR%');
+            changeColor(2, '%TO_RGB_COLOR%');
         } catch (e) {
-            print('Erro' + e);
+            print('Error:' + e);
         }
         alert('Success.');
     } else {

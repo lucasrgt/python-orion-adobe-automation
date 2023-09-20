@@ -1,6 +1,7 @@
 import os
 
 from internal.module.shared.entity.jsx_entity import JsxEntity
+from internal.module.shared.usecase.bundle_jsx_scripts_usecase import BundleJsxScriptsUseCase
 from internal.module.shared.usecase.inject_values_into_jsx_usecase import InjectValuesIntoJsxUseCase
 from internal.module.shared.usecase.read_jsx_file_usecase import ReadJsxFileUseCase
 
