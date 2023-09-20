@@ -2,15 +2,12 @@ import os
 
 from internal.module.shared.entity.jsx_entity import JsxEntity
 from internal.module.shared.usecase.inject_values_into_jsx_usecase import InjectValuesIntoJsxUseCase
-from internal.module.shared.usecase.read_jsx_file_usecase import ReadJsxFileUseCase
 
 
 class ChangeLayerColorUseCase:
     def __init__(self,
-                 read_jsx_file_usecase: ReadJsxFileUseCase,
                  inject_values_into_jsx_usecase: InjectValuesIntoJsxUseCase):
         self.current_file_path = os.path.abspath(os.path.dirname(__file__))
-        self.read_jsx_file_usecase = read_jsx_file_usecase
         self.inject_values_into_jsx_usecase = inject_values_into_jsx_usecase
 
     def execute(self,
@@ -19,14 +16,14 @@ class ChangeLayerColorUseCase:
                 from_rgb_color: [int, int, int],
                 to_rgb_color: [int, int, int]):
 
-        jsx_entity.file_path = os.path.join(self.current_file_path, "jsx/change_layer_color.jsx")
+        # Read the JSX file
+        jsx_entity.file_path = os.path.join(self.current_file_path, 'jsx/change_layer_color.jsx')
 
-        # Read the script file
-        ok = self.read_jsx_file_usecase.execute(jsx_entity)
-        if ok is False:
+        ok = jsx_entity.script_file = jsx_entity.read_jsx_file()
+        if ok is None:
             return False
 
-        # Inject comp name into Select Comp Script
+        # Inject layer name and colors into Change Layer Color script
         replacements = [
             {"template": "%LAYER_NAME%", "value": layer_name},
             {"template": "%FROM_RGB_COLOR%", "value": from_rgb_color},

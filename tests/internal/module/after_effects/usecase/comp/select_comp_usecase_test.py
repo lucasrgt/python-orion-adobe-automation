@@ -49,8 +49,6 @@ class TestSelectCompUseCase(unittest.TestCase):
         # act
         self.open_project_usecase.execute(self.open_project_jsx_entity, self.project_path)
 
-        print(self.open_project_jsx_entity.script_file)
-
         result = self.usecase.execute(self.select_comp_jsx_entity, comp_name)
 
         # bundle it to single execution

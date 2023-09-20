@@ -2,14 +2,14 @@ from typing import Optional
 
 
 class JsxEntity:
-    def __init__(self, file_path: str = "default script"):
+    def __init__(self, file_path: str = None):
         self.file_path: str = file_path
         self.script_file: Optional[str] = self.read_jsx_file()
 
     def read_jsx_file(self) -> Optional[str]:
         """Read and convert script file to a format that Python can handle"""
 
-        if self.file_path == "default script":
+        if self.file_path is None:
             return None
 
         try:

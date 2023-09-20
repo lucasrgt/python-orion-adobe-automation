@@ -18,7 +18,7 @@ class InjectValuesIntoJsxUseCase:
                 )
 
             if initial_script == jsx_entity.script_file:
-                print("Script Template Variable was not found.")
+                print("Script Template Variable was not found")
                 return False
 
             return True
