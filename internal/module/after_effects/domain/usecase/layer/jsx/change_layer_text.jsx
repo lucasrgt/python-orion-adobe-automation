@@ -27,7 +27,6 @@ function changeText(textLayer, newText) {
     var textDocument = textProp.value;
     textDocument.text = newText;
     textProp.setValue(textDocument);
-    alert('Oi');
   } catch (e) {
     alert('CANNOT CHANGE TEXT: ' + e);
   }
