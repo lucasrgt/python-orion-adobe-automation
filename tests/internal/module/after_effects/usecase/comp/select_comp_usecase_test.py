@@ -27,7 +27,7 @@ class TestSelectCompUseCase(unittest.TestCase):
 
         self.project_path = os.path.join(self.current_file_path, "resources/test_project.aep")
 
-        self.after_effects_path = project_config.after_effects_path
+        self.after_effects_path = project_config.AFTER_EFFECTS_PATH
 
         # Dependencies Setup
         self.main_jsx_entity = MockJsxEntity()

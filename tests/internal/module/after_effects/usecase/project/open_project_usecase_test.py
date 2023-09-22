@@ -20,7 +20,7 @@ class TestOpenProjectUseCase(unittest.TestCase):
 
         self.project_path = os.path.join(self.current_file_path, 'resources/test_project.aep')
 
-        self.after_effects_path = project_config.after_effects_path
+        self.after_effects_path = project_config.AFTER_EFFECTS_PATH
 
         # Dependencies Setup
         inject_jsx_file_usecase = InjectValuesIntoJsxUseCase()

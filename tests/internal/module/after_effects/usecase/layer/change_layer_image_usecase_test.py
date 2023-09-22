@@ -6,7 +6,6 @@ import os
 from internal.core.config import project_config
 from internal.module.after_effects.domain.usecase.comp.select_comp_usecase import SelectCompUseCase
 from internal.module.after_effects.domain.usecase.layer.change_layer_image_usecase import ChangeLayerImageUseCase
-from internal.module.after_effects.domain.usecase.layer.change_layer_text_usecase import ChangeLayerTextUseCase
 from internal.module.after_effects.domain.usecase.project.open_project_usecase import OpenProjectUseCase
 from internal.module.shared.entity.jsx_entity import JsxEntity
 from internal.module.shared.usecase.bundle_jsx_scripts_usecase import BundleJsxScriptsUseCase
@@ -29,7 +28,7 @@ class TestChangeLayerImageUseCase(unittest.TestCase):
 
         self.project_path = os.path.join(self.current_file_path, "resources/test_project.aep")
 
-        self.after_effects_path = project_config.after_effects_path
+        self.after_effects_path = project_config.AFTER_EFFECTS_PATH
 
         # Dependencies Setup
         self.open_project_jsx_entity = MockJsxEntity()
@@ -48,7 +47,7 @@ class TestChangeLayerImageUseCase(unittest.TestCase):
         # arrange
         comp_name = "Teste"
         layer_name = "[TEST IMAGE]"
-        image_path = os.path.join(current_file_path, "./resources/img/logo_acanto.png")
+        image_path = os.path.join(current_file_path, "./resources/img/logo_python.png")
 
         # act
         self.open_project_usecase.execute(self.open_project_jsx_entity, self.project_path)
