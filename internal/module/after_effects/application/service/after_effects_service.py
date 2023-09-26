@@ -8,7 +8,6 @@ from internal.module.after_effects.domain.usecase.layer.change_layer_image_useca
 from internal.module.after_effects.domain.usecase.layer.change_layer_text_usecase import ChangeLayerTextUseCase
 from internal.module.after_effects.domain.usecase.project.open_project_usecase import OpenProjectUseCase
 from internal.module.shared.entity.jsx_entity import JsxEntity
-from internal.module.shared.usecase.bundle_jsx_scripts_usecase import BundleJsxScriptsUseCase
 
 
 class AfterEffectsService:
@@ -18,7 +17,6 @@ class AfterEffectsService:
                  change_layer_color_usecase: ChangeLayerColorUseCase,
                  change_layer_text_usecase: ChangeLayerTextUseCase,
                  change_layer_image_usecase: ChangeLayerImageUseCase,
-                 bundle_jsx_scripts_usecase: BundleJsxScriptsUseCase,
                  change_layer_color_action_strategy: ChangeLayerColorActionStrategy,
                  change_layer_text_action_strategy: ChangeLayerTextActionStrategy,
                  change_layer_image_action_strategy: ChangeLayerImageActionStrategy):
@@ -26,7 +24,6 @@ class AfterEffectsService:
         self.change_layer_color_usecase = change_layer_color_usecase
         self.change_layer_text_usecase = change_layer_text_usecase
         self.change_layer_image_usecase = change_layer_image_usecase
-        self.bundle_jsx_scripts_usecase = bundle_jsx_scripts_usecase
         self.change_layer_color_action_strategy = change_layer_color_action_strategy
         self.change_layer_text_action_strategy = change_layer_text_action_strategy
         self.change_layer_image_action_strategy = change_layer_image_action_strategy
