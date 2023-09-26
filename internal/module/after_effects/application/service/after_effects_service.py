@@ -1,3 +1,8 @@
+from internal.module.after_effects.application.strategy.change_layer_color_action_strategy import \
+    ChangeLayerColorActionStrategy
+from internal.module.after_effects.application.strategy.change_layer_image_action_strategy import \
+    ChangeLayerImageActionStrategy
+from internal.module.after_effects.application.strategy.change_layer_text_strategy import ChangeLayerTextActionStrategy
 from internal.module.after_effects.domain.usecase.layer.change_layer_color_usecase import ChangeLayerColorUseCase
 from internal.module.after_effects.domain.usecase.layer.change_layer_image_usecase import ChangeLayerImageUseCase
 from internal.module.after_effects.domain.usecase.layer.change_layer_text_usecase import ChangeLayerTextUseCase
@@ -13,12 +18,18 @@ class AfterEffectsService:
                  change_layer_color_usecase: ChangeLayerColorUseCase,
                  change_layer_text_usecase: ChangeLayerTextUseCase,
                  change_layer_image_usecase: ChangeLayerImageUseCase,
-                 bundle_jsx_scripts_usecase: BundleJsxScriptsUseCase):
+                 bundle_jsx_scripts_usecase: BundleJsxScriptsUseCase,
+                 change_layer_color_action_strategy: ChangeLayerColorActionStrategy,
+                 change_layer_text_action_strategy: ChangeLayerTextActionStrategy,
+                 change_layer_image_action_strategy: ChangeLayerImageActionStrategy):
         self.open_project_usecase = open_project_usecase
         self.change_layer_color_usecase = change_layer_color_usecase
         self.change_layer_text_usecase = change_layer_text_usecase
         self.change_layer_image_usecase = change_layer_image_usecase
         self.bundle_jsx_scripts_usecase = bundle_jsx_scripts_usecase
+        self.change_layer_color_action_strategy = change_layer_color_action_strategy
+        self.change_layer_text_action_strategy = change_layer_text_action_strategy
+        self.change_layer_image_action_strategy = change_layer_image_action_strategy
 
     def process_file(self, file_data):
         jsx_entities = []
@@ -35,9 +46,9 @@ class AfterEffectsService:
 
                 # Apply actions to layers
                 action_strategies = {
-                    "color": ChangeLayerColorStrategy(self.change_layer_color_usecase),
-                    "text": ChangeLayerTextStrategy(self.change_layer_text_usecase),
-                    "image": ChangeLayerImageStrategy(self.change_layer_image_usecase)
+                    "color": self.change_layer_color_action_strategy,
+                    "text": self.change_layer_text_action_strategy,
+                    "image": self.change_layer_image_action_strategy,
                 }
 
                 for action in layer["actions"]:
