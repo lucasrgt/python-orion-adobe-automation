@@ -11,7 +11,7 @@ class ModuleRouter:
         module_name = data.get('module')
 
         if module_name == "after_effects":
-            self.after_effects_controller.handle_data(data)
+            self.after_effects_controller.handle(data)
 
         elif module_name == "photoshop":
-            self.photoshop_controller.handle_data(data)
+            self.photoshop_controller.handle(data)

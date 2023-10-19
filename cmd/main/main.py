@@ -1,12 +1,12 @@
 from internal.core.ioc.di_container import container
-from internal.core.server import socket_server
-from internal.core.server.module_router import ModuleRouter
+from internal.core.server.socket_servers_starter import SocketServersStarter
 
 
 def main():
     try:
-        module_router = container.get(ModuleRouter)
-        socket_server.start_socket_server(module_router)
+        server_starter = container.get(SocketServersStarter)
+        server_starter.start_all()
+
     except Exception as e:
         print(f"Error: {str(e)}")
 

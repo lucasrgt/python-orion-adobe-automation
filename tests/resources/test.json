@@ -1,0 +1,39 @@
+{
+  "module": "after_effects",
+  "files": [
+    {
+      "name": "project1.aep",
+      "layers": [
+        {
+          "layerId": "12345",
+          "actions": [
+            {
+              "type": "color",
+              "params": {
+                "fromColor": "#ffffff",
+                "toColor": "#000000"
+              }
+            },
+            {
+              "type": "text",
+              "params": {
+                "textValue": "Sample Text"
+              }
+            }
+          ]
+        },
+        {
+          "layerId": "67890",
+          "actions": [
+            {
+              "type": "image",
+              "params": {
+                "imagePath": "path/to/image.jpg"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
